@@ -9,3 +9,4 @@ docker pull celentes/ubuntu1804-bazel
 
 ### Extra
 * Fixes bazel container not supporting unicode filenames as sources
+* Adds ibazel to the image
