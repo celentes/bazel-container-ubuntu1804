@@ -31,9 +31,6 @@ pip_deps()
 load("@layer_definitions//layers/ubuntu1804/base:deps.bzl", ubuntu1604_base_deps = "deps")
 ubuntu1604_base_deps()
 
-load("//layers/bazel:deps.bzl", bazel_deps = "deps")
-bazel_deps()
-
 load("@layer_definitions//layers/ubuntu1804/clang:deps.bzl", clang_deps = "deps")
 clang_deps()
 
@@ -42,3 +39,9 @@ java8_deps()
 
 load("@layer_definitions//layers/ubuntu1804/python:deps.bzl", python_deps = "deps")
 python_deps()
+
+load("//layers/bazel:deps.bzl", bazel_deps = "deps")
+bazel_deps()
+
+load("//layers/docker:deps.bzl", docker_deps = "deps")
+docker_deps()
