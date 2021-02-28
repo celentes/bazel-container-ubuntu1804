@@ -43,5 +43,8 @@ python_deps()
 load("//layers/bazel:deps.bzl", bazel_deps = "deps")
 bazel_deps()
 
+load("//layers/bazel_tools:deps.bzl", bazel_tools_deps = "deps")
+bazel_tools_deps()
+
 load("//layers/docker:deps.bzl", docker_deps = "deps")
 docker_deps()
