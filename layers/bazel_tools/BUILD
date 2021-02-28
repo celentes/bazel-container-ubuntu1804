@@ -1,9 +1,11 @@
 load("@io_bazel_rules_docker//contrib:test.bzl", "container_test")
-load("@io_bazel_rules_docker//docker/package_managers:download_pkgs.bzl", "download_pkgs")
+load(
+    "@io_bazel_rules_docker//container:container.bzl",
+    "container_image", "container_push"
+)
 load(
     "@io_bazel_rules_docker//docker/toolchain_container:toolchain_container.bzl",
-    "language_tool_layer",
-    "toolchain_container",
+    "language_tool_layer"
 )
 load("@io_bazel_rules_docker//docker/util:run.bzl", "container_run_and_extract")
 
@@ -12,7 +14,7 @@ package(default_visibility = ["//visibility:public"])
 exports_files(glob(["*.yaml"]))
 
 # Create intermediate image
-toolchain_container(
+container_image(
     name = "bazel_tools_intermediary",
     base = "@ubuntu1804//image",
     files = [
