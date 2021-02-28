@@ -15,7 +15,7 @@ exports_files(glob(["*.yaml"]))
 
 # Create intermediate image
 container_image(
-    name = "bazel_tools_intermediary",
+    name = "ibazel_intermediary",
     base = "@ubuntu1804//image",
     files = [
         "@ibazel_binary//file",
@@ -31,11 +31,11 @@ container_run_and_extract(
         "tar cvf /ibazel.tar --mtime='1970-01-01' /usr/local/bin/ibazel",
     ],
     extract_file = "/ibazel.tar",
-    image = ":bazel_tools_intermediary.tar",
+    image = ":ibazel_intermediary.tar",
 )
 
 language_tool_layer(
-    name = "bazel-tools-ltl",
+    name = "ibazel-ltl",
     base = "@ubuntu1804//image",
     tars = [":ibazel_tar/ibazel.tar"],
 )
@@ -45,6 +45,6 @@ container_test(
     configs = [
         ":tests.yaml",
     ],
-    image = ":bazel-tools-ltl",
+    image = ":ibazel-ltl",
     verbose = True,
 )

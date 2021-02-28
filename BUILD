@@ -28,7 +28,7 @@ toolchain_container(
         "@layer_definitions//layers/ubuntu1804/python:python-ltl",
         "//layers/bazel:bazel-ltl",
         "//layers/docker:docker-ltl",
-        "//layers/bazel_tools:bazel-tools-ltl",
+        "//layers/ibazel:ibazel-ltl",
     ],
 )
 
@@ -54,7 +54,7 @@ container_test(
         "@layer_definitions//layers/ubuntu1804/python:tests.yaml",
         "//layers/bazel:tests.yaml",
         "//layers/docker:tests.yaml",
-        "//layers/bazel_tools:tests.yaml",
+        "//layers/ibazel:tests.yaml",
     ],
     image = ":image",
     verbose = True,
