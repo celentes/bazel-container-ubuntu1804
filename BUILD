@@ -1,4 +1,7 @@
-load("@io_bazel_rules_docker//container:container.bzl", "container_image")
+load(
+    "@io_bazel_rules_docker//container:container.bzl",
+    "container_image", "container_push"
+)
 load(
     "@io_bazel_rules_docker//contrib/automatic_container_release:configs_test.bzl",
     "configs_test",
@@ -59,4 +62,13 @@ container_repro_test(
     name = "image-repro-test",
     image = ":image",
     workspace_file = "//:WORKSPACE",
+)
+
+container_push(
+    name = "push",
+    format = "Docker",
+    image = ":image",
+    registry = "docker.io",
+    repository = "celentes/ubuntu1804-bazel",
+    tag = "latest",
 )
