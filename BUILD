@@ -72,5 +72,5 @@ container_push(
     image = ":image",
     registry = "docker.io",
     repository = "celentes/ubuntu1804-bazel",
-    tag = "latest",
+    tag = "4.0.0",
 )
