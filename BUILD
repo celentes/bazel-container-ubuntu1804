@@ -67,10 +67,18 @@ container_repro_test(
 )
 
 container_push(
-    name = "push",
+    name = "push_version",
     format = "Docker",
     image = ":image",
     registry = "docker.io",
     repository = "celentes/ubuntu1804-bazel",
     tag = "4.0.0",
+)
+
+container_push(
+    name = "push_latest",
+    format = "Docker",
+    image = ":image",
+    registry = "docker.io",
+    repository = "celentes/ubuntu1804-bazel",
 )
