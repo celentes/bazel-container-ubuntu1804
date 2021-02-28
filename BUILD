@@ -31,6 +31,11 @@ toolchain_container(
 container_image(
     name = "image",
     base = ":image_intermediate",
+    env = {
+        "LANG": "C.UTF-8",
+        "LANGUAGE": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+    },
     cmd = None,
     entrypoint = ["/usr/local/bin/bazel"],
 )
