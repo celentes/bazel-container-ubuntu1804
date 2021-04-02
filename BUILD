@@ -34,10 +34,17 @@ toolchain_container(
 
 toolchain_container(
     name = "image-intermediate-glvnd",
-    base = ":image_intermediate",
+    base = "@ubuntu1804//image",
     # Remove non-deterministic files.
     installation_cleanup_commands = "rm -f /etc/init.d/.depend.boot /etc/init.d/.depend.start /etc/init.d/.depend.stop",
     language_layers = [
+        "@layer_definitions//layers/ubuntu1804/clang:clang-ltl",
+        "@layer_definitions//layers/ubuntu1804/java:java-ltl",
+        "@layer_definitions//layers/ubuntu1804/java:java11-ltl",
+        "@layer_definitions//layers/ubuntu1804/python:python-ltl",
+        "//layers/bazel:bazel-ltl",
+        "//layers/docker:docker-ltl",
+        "//layers/ibazel:ibazel-ltl",
         "//layers/glvnd:glvnd-ltl",
     ],
 )
@@ -56,7 +63,7 @@ container_image(
 
 container_image(
     name = "image-glvnd",
-    base = ":image_intermediate",
+    base = ":image-intermediate-glvnd",
     env = {
         "LANG": "C.UTF-8",
         "LANGUAGE": "C.UTF-8",
