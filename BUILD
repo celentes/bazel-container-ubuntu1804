@@ -32,6 +32,16 @@ toolchain_container(
     ],
 )
 
+toolchain_container(
+    name = "image-intermediate-glvnd",
+    base = ":image_intermediate",
+    # Remove non-deterministic files.
+    installation_cleanup_commands = "rm -f /etc/init.d/.depend.boot /etc/init.d/.depend.start /etc/init.d/.depend.stop",
+    language_layers = [
+        "//layers/glvnd:glvnd-ltl",
+    ],
+)
+
 container_image(
     name = "image",
     base = ":image_intermediate",
@@ -39,6 +49,20 @@ container_image(
         "LANG": "C.UTF-8",
         "LANGUAGE": "C.UTF-8",
         "LC_ALL": "C.UTF-8",
+    },
+    cmd = None,
+    entrypoint = ["/usr/local/bin/bazel"],
+)
+
+container_image(
+    name = "image-glvnd",
+    base = ":image_intermediate",
+    env = {
+        "LANG": "C.UTF-8",
+        "LANGUAGE": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "NVIDIA_VISIBLE_DEVICES": "all",
+        "NVIDIA_DRIVER_CAPABILITIES": "graphics,utility,compute",
     },
     cmd = None,
     entrypoint = ["/usr/local/bin/bazel"],
@@ -66,6 +90,12 @@ container_repro_test(
     workspace_file = "//:WORKSPACE",
 )
 
+container_repro_test(
+    name = "image-glvnd-repro-test",
+    image = ":image-glvnd",
+    workspace_file = "//:WORKSPACE",
+)
+
 container_push(
     name = "push_version",
     format = "Docker",
@@ -73,6 +103,15 @@ container_push(
     registry = "docker.io",
     repository = "celentes/ubuntu1804-bazel",
     tag = "4.0.0",
+)
+
+container_push(
+    name = "push_glvnd",
+    format = "Docker",
+    image = ":image-glvnd",
+    registry = "docker.io",
+    repository = "celentes/ubuntu1804-bazel",
+    tag = "4.0.0-glvnd",
 )
 
 container_push(
