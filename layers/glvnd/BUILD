@@ -22,15 +22,14 @@ download_pkgs(
     name = "glvnd_debs",
     image_tar = "@ubuntu1804//image",
     packages = [
-        "libglvnd0",
-        "libgl1",
-        "libglx0",
-        "libegl1",
-        "libglvnd-dev",
+        # already contains libglvnd-dev, libgl1, libegl1, libglvnd0, libglx0, etc
         "libgl1-mesa-dev",
         "libegl1-mesa-dev",
-        "libxext6",
-        "libx11-6",
+        # contains various libx*-dev's
+        "libxrandr-dev",
+        "libxcursor-dev",
+        "libxinerama-dev",
+        "libxi-dev",
     ],
 )
 
