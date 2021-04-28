@@ -20,7 +20,7 @@ toolchain_container(
     name = "image_intermediate",
     base = "@ubuntu1804//image",
     # Remove non-deterministic files.
-    installation_cleanup_commands = "rm -f /etc/init.d/.depend.boot /etc/init.d/.depend.start /etc/init.d/.depend.stop",
+    installation_cleanup_commands = "rm -f /etc/init.d/.depend.boot /etc/init.d/.depend.start /etc/init.d/.depend.stop /var/cache/apt/srcpkgcache.bin",
     language_layers = [
         "@layer_definitions//layers/ubuntu1804/clang:clang-ltl",
         "@layer_definitions//layers/ubuntu1804/java:java-ltl",
@@ -29,6 +29,7 @@ toolchain_container(
         "//layers/bazel:bazel-ltl",
         "//layers/docker:docker-ltl",
         "//layers/ibazel:ibazel-ltl",
+        "//layers/pip:pip-ltl",
     ],
 )
 
@@ -36,7 +37,7 @@ toolchain_container(
     name = "image-intermediate-glvnd",
     base = "@ubuntu1804//image",
     # Remove non-deterministic files.
-    installation_cleanup_commands = "rm -f /etc/init.d/.depend.boot /etc/init.d/.depend.start /etc/init.d/.depend.stop",
+    installation_cleanup_commands = "rm -f /etc/init.d/.depend.boot /etc/init.d/.depend.start /etc/init.d/.depend.stop /var/cache/apt/srcpkgcache.bin",
     language_layers = [
         "@layer_definitions//layers/ubuntu1804/clang:clang-ltl",
         "@layer_definitions//layers/ubuntu1804/java:java-ltl",
@@ -45,6 +46,7 @@ toolchain_container(
         "//layers/bazel:bazel-ltl",
         "//layers/docker:docker-ltl",
         "//layers/ibazel:ibazel-ltl",
+        "//layers/pip:pip-ltl",
         "//layers/glvnd:glvnd-ltl",
     ],
 )
