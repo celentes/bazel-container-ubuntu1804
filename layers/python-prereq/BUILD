@@ -10,12 +10,15 @@ load(
 package(default_visibility = ["//visibility:public"])
 
 download_pkgs(
-    name = "pip_debs",
+    name = "python_prereq_debs",
     image_tar = "@ubuntu1804//image",
     packages = [
-        "python3-pip",
-        "python3-setuptools",
         "build-essential",
+        "zlib1g-dev",
+        "libssl-dev",
+        "libbz2-dev",
+        "libreadline-dev",
+        "libsqlite3-dev",
     ],
 )
 
@@ -26,8 +29,8 @@ PYTHON_CLEANUP_COMMANDS = (
 )
 
 language_tool_layer(
-    name = "pip-ltl",
+    name = "python-prereq-ltl",
     base = "@ubuntu1804//image",
-    installables_tar = ":pip_debs.tar",
+    installables_tar = ":python_prereq_debs.tar",
     installation_cleanup_commands = PYTHON_CLEANUP_COMMANDS,
 )

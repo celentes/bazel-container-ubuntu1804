@@ -29,7 +29,7 @@ toolchain_container(
         "//layers/bazel:bazel-ltl",
         "//layers/docker:docker-ltl",
         "//layers/ibazel:ibazel-ltl",
-        #"//layers/pip:pip-ltl",
+        "//layers/python-prereq:python-prereq-ltl",
     ],
 )
 
@@ -46,7 +46,7 @@ toolchain_container(
         "//layers/bazel:bazel-ltl",
         "//layers/docker:docker-ltl",
         "//layers/ibazel:ibazel-ltl",
-        #"//layers/pip:pip-ltl",
+        "//layers/python-prereq:python-prereq-ltl",
         "//layers/glvnd:glvnd-ltl",
     ],
 )
